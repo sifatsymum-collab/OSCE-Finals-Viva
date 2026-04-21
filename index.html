@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSCE Finals Viva Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar__brand">
+          <p class="eyebrow">UK Medical Finals</p>
+          <h1>OSCE Viva Dashboard</h1>
+          <p class="sidebar__copy">
+            Condition-centred revision for real-patient examination stations.
+          </p>
+        </div>
+
+        <section class="sidebar__section">
+          <div class="sidebar__section-header">
+            <h2>Examination Systems</h2>
+            <button id="clearSystemButton" class="ghost-button" type="button">
+              Clear
+            </button>
+          </div>
+          <nav id="systemNav" class="system-nav" aria-label="Examination systems"></nav>
+        </section>
+
+        <section class="sidebar__section sidebar__section--compact">
+          <h2>Quick Focus</h2>
+          <div class="chip-stack">
+            <button class="mini-chip" data-quick-filter="must">Must know</button>
+            <button class="mini-chip" data-quick-filter="classic">Examiner favourites</button>
+            <button class="mini-chip" data-quick-filter="scar">Scars</button>
+            <button class="mini-chip" data-quick-filter="device">Devices</button>
+            <button class="mini-chip" data-quick-filter="transplant">Transplants</button>
+          </div>
+        </section>
+
+        <section class="sidebar__section sidebar__section--compact">
+          <h2>How To Use</h2>
+          <ul class="sidebar-list">
+            <li>Skim cards by system.</li>
+            <li>Switch on self-test mode to hide answers.</li>
+            <li>Use random condition or viva buttons for active recall.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main-layout">
+        <header class="hero">
+          <div>
+            <p class="eyebrow">Focused Examination Viva Prep</p>
+            <h2>High-yield chronic conditions, classic clues, scars, devices, and transplant findings.</h2>
+          </div>
+          <div class="hero__stats" id="heroStats"></div>
+        </header>
+
+        <section class="toolbar">
+          <label class="search-field" for="searchInput">
+            <span class="search-field__label">Search</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Try: aortic stenosis, stoma, fistula, acromegaly..."
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="toolbar-select">
+            <span>System</span>
+            <select id="systemFilter"></select>
+          </label>
+
+          <label class="toolbar-select">
+            <span>Common vs classic</span>
+            <select id="frequencyFilter">
+              <option value="all">All</option>
+              <option value="common">Very common</option>
+              <option value="classic">Classic examiner favourite</option>
+            </select>
+          </label>
+
+          <label class="toolbar-select">
+            <span>Scar / device / transplant</span>
+            <select id="clueFilter">
+              <option value="all">All</option>
+              <option value="scar">Scar</option>
+              <option value="device">Device</option>
+              <option value="transplant">Transplant</option>
+            </select>
+          </label>
+
+          <div class="toolbar-actions">
+            <button id="randomConditionButton" class="primary-button" type="button">
+              Random Condition
+            </button>
+            <button id="randomQuestionButton" class="secondary-button" type="button">
+              Random Viva Question
+            </button>
+            <button id="selfTestButton" class="secondary-button" type="button" aria-pressed="false">
+              Self-Test Off
+            </button>
+          </div>
+        </section>
+
+        <section id="questionBanner" class="question-banner hidden" aria-live="polite"></section>
+
+        <section class="content-grid">
+          <div class="catalogue-panel">
+            <div class="catalogue-panel__header">
+              <div>
+                <p class="eyebrow">Condition Cards</p>
+                <h3 id="resultsHeading">Showing all cards</h3>
+              </div>
+              <p id="resultsMeta" class="muted-copy"></p>
+            </div>
+            <div id="conditionGrid" class="condition-grid"></div>
+          </div>
+
+          <article class="detail-panel" id="detailPanel" aria-live="polite"></article>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
